@@ -45,6 +45,7 @@ JSON
     ]
 }
 Исправьте все ошибки в теле POST-запроса (формат JSON) и приложите скриншот получившегося результата.
+![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/json_2.typeOfData2.png)
 Перечислите тип данных у каждого ключа в теле запроса из предыдущего пункта. Пример: "key1: string"
 		  json_2.typeOfData.txt
  
