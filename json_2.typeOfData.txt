@@ -1,0 +1,9 @@
+"key1: string",
+"key2: integer",
+"key3: string",
+"key4: string",
+"task: object {key5: string, key6: boolean, key7: string}",
+"user: array[
+	object[0]: "key8: array[string, string, string]", "key9: string",
+	object[1]: "key8: string", "key9: object"
+]
