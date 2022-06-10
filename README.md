@@ -45,7 +45,9 @@ JSON
     ]
 }
 Исправьте все ошибки в теле POST-запроса (формат JSON) и приложите скриншот получившегося результата.
+
 ![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/json_2.typeOfData2.png)
+
 Перечислите тип данных у каждого ключа в теле запроса из предыдущего пункта. Пример: "key1: string"
 		  json_2.typeOfData.txt
  
@@ -57,15 +59,27 @@ JSON
 Предоставьте скриншот из postman (обязательно отображение запроса и ответа) и vk по каждому заданию ниже:
 
 1.     Создайте пустой альбом для фотографий https://dev.vk.com/method/photos.createAlbum.
-
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_1.Create.png)
 2.     Загрузите две фотографии в альбом.
-
+		The first photo:
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.1.UploadPhoto.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.2.UploadPhoto.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.3.SavePhoto.png)
+		The second photo:
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.1.UploadPhoto2.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.2.UploadPhoto2.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_2.3.SavePhoto2.png)
 3.     Получите список фотографий в альбоме.
-
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_3.1.GetList.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_3.2.GetList.png)
 4.     Добавьте к каждой фотографии по одному разному комментарию.
-
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_4.1.AddComment-1.png)
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_4.2.AddComment-2.png)
 5.     Отредактируйте комментарий у одной фотографии.
-
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_5.EditComment.png)
 6.     Удалите одну фотографию.
-
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_6.DeletePhoto.png)
 7.     Удалите альбом.
+	![Image alt](https://github.com/EugeneVovk/Internship-Sprint-3/raw/main/img/api_7.DeleteAlbum.png)
+	
+	https://loom.com/share/2a53785729fd419185f6205ca7bea5b7
