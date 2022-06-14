@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "e0d0b401-35ef-41e4-8e30-6bf57ca2444a",
+		"name": "RTLKM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20224332"
+	},
+	"item": [
+		{
+			"name": "Create an album and two photos",
+			"item": [
+				{
+					"name": "1. Create an album for photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var albumId = jsonData.response.id;\r",
+									"var ownerId = jsonData.response.owner_id;\r",
+									"\r",
+									"pm.environment.set(\"album_id\", albumId);\r",
+									"pm.environment.set(\"owner_id\", ownerId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://api.vk.com/method/photos.createAlbum?access_token={{access_token}}&v={{v}}&title=Test_00",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.createAlbum"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "title",
+									"value": "Test_00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1. Get an album_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var albumId = jsonData.response.items[0].id;\r",
+									"\r",
+									"pm.environment.set(\"album_id\", albumId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://api.vk.com/method/photos.getAlbums?access_token={{access_token}}&v={{v}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.getAlbums"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1. Upload two photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var albumId = jsonData.response.album_id;\r",
+									"var url = jsonData.response.upload_url;\r",
+									"var userId = jsonData.response.user_id;\r",
+									"\r",
+									"pm.environment.set(\"album_id\", albumId);\r",
+									"pm.environment.set(\"upload_url\", url);\r",
+									"pm.environment.set(\"user_id\", userId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://api.vk.com/method/photos.getUploadServer?access_token={{access_token}}&v={{v}}&album_id={{album_id}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.getUploadServer"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "album_id",
+									"value": "{{album_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 Upload two photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var server = jsonData.server;\r",
+									"var photosList = jsonData.photos_list;\r",
+									"var aid = jsonData.aid;\r",
+									"var hash = jsonData.hash;\r",
+									"\r",
+									"pm.environment.set(\"server\", server);\r",
+									"pm.environment.set(\"photos_list\", photosList);\r",
+									"pm.environment.set(\"aid\", aid);\r",
+									"pm.environment.set(\"hash\", hash);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/user/OneDrive/Рабочий стол/cat.jpg"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/user/OneDrive/Рабочий стол/dog.jpeg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{upload_url}}",
+							"host": [
+								"{{upload_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3. Save two photos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.vk.com/method/photos.save?access_token={{access_token}}&v={{v}}&album_id={{album_id}}&server={{server}}&photos_list={{photos_list}}&aid={{aid}}&hash={{hash}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.save"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "album_id",
+									"value": "{{album_id}}"
+								},
+								{
+									"key": "server",
+									"value": "{{server}}"
+								},
+								{
+									"key": "photos_list",
+									"value": "{{photos_list}}"
+								},
+								{
+									"key": "aid",
+									"value": "{{aid}}"
+								},
+								{
+									"key": "hash",
+									"value": "{{hash}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get a list of the photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"console.log(jsonData);\r",
+									"\r",
+									"const array = jsonData.response.items;\r",
+									"const len = jsonData.response.items.length;\r",
+									"\r",
+									"//  количектво картинок в консоль\r",
+									"console.log(\"only \" + len + \" photos:\");\r",
+									"\r",
+									"//  список картинок по id в консоль\r",
+									"for (let i = 0; i < len; i++) {\r",
+									"    console.log(i+1, array[i].id);\r",
+									"};\r",
+									"\r",
+									"var photoId = jsonData.response.items[0].id;\r",
+									"pm.environment.set(\"photo_id-1\", photoId);\r",
+									"\r",
+									"var photoId = jsonData.response.items[1].id;\r",
+									"pm.environment.set(\"photo_id-2\", photoId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.get?access_token={{access_token}}&v={{v}}&album_id={{album_id}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.get"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "album_id",
+									"value": "{{album_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.1. Add one comment to photo 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.createComment?access_token={{access_token}}&v={{v}}&owner_id={{owner_id}}&photo_id={{photo_id-1}}&message=It's a new added comment",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.createComment"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "owner_id",
+									"value": "{{owner_id}}"
+								},
+								{
+									"key": "photo_id",
+									"value": "{{photo_id-1}}"
+								},
+								{
+									"key": "message",
+									"value": "It's a new added comment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.2. Add one comment to photo 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var commentId = jsonData.response;\r",
+									"\r",
+									"pm.environment.set(\"comment_id\", commentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.createComment?access_token={{access_token}}&v={{v}}&owner_id={{owner_id}}&photo_id={{photo_id-2}}&message=It's an another added comment",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.createComment"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "owner_id",
+									"value": "{{owner_id}}"
+								},
+								{
+									"key": "photo_id",
+									"value": "{{photo_id-2}}"
+								},
+								{
+									"key": "message",
+									"value": "It's an another added comment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Edit the comment of one photo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.editComment?access_token={{access_token}}&v={{v}}&owner_id={{owner_id}}&comment_id={{comment_id}}&message=And this is already a modified comment",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.editComment"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "owner_id",
+									"value": "{{owner_id}}"
+								},
+								{
+									"key": "comment_id",
+									"value": "{{comment_id}}"
+								},
+								{
+									"key": "message",
+									"value": "And this is already a modified comment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Delete one photo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.delete?access_token={{access_token}}&v={{v}}&owner_id={{owner_id}}&photo_id={{photo_id-1}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.delete"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "owner_id",
+									"value": "{{owner_id}}"
+								},
+								{
+									"key": "photo_id",
+									"value": "{{photo_id-1}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Delete an album",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.vk.com/method/photos.deleteAlbum?access_token={{access_token}}&v={{v}}&album_id={{album_id}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"vk",
+								"com"
+							],
+							"path": [
+								"method",
+								"photos.deleteAlbum"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access_token}}"
+								},
+								{
+									"key": "v",
+									"value": "{{v}}"
+								},
+								{
+									"key": "album_id",
+									"value": "{{album_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VK oauth",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://oauth.vk.com/authorize?client_id=8188953&display=page&redirect_uri=https://vk.com/api2022&scope=photos&response_type=token&v=5.131&state=123456",
+					"protocol": "https",
+					"host": [
+						"oauth",
+						"vk",
+						"com"
+					],
+					"path": [
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "8188953"
+						},
+						{
+							"key": "display",
+							"value": "page"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://vk.com/api2022"
+						},
+						{
+							"key": "scope",
+							"value": "photos"
+						},
+						{
+							"key": "response_type",
+							"value": "token"
+						},
+						{
+							"key": "v",
+							"value": "5.131"
+						},
+						{
+							"key": "state",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "method",
+			"value": "photos.getUploadServer"
+		}
+	]
+}
